@@ -71,8 +71,8 @@ def bookstore():
         price = data[2]
         category = data[3]
         description = data[4]
-        # image = 'sdg.jpg'
         image = data[5]
+        image2 = data[6]
         
         product = {
             '商品編號': pid,
@@ -80,7 +80,8 @@ def bookstore():
             '單價': price,
             '類別': category,
             '商品敘述': description,
-            '商品圖片': image
+            '商品圖片': image,
+            '商品圖片2': image2
         }
 
         return render_template('product.html', data = product, user=current_user.name)
