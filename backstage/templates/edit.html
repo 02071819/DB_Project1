@@ -15,11 +15,11 @@
   <form method="post" enctype=multipart/form-data action={{ url_for('manager.edit') }}>
     <table class="table table-bordered">
       <tr>
-        <th>商品編號</th>
+        <th>方案編號</th>
         <td><input class="form-control" type="text" value="{{ data.商品編號 }}" name="pid" readonly class="id_input"></td>
       </tr>
       <tr>
-        <th>商品名稱</th>
+        <th>方案名稱</th>
         <td><input class="form-control" type="text" value="{{ data.商品名稱 }}" name="name" required></td>
       </tr>
       <tr>
@@ -120,7 +120,111 @@
             <option value="宜蘭">宜蘭</option>
             <option value="臺北">臺北</option>
             <option value="新北">新北</option>
+            <option value="桃園">桃園</option><br/>
+<div class="container-xl">
+  <br/>
+  <form method="post" enctype=multipart/form-data action={{ url_for('manager.edit') }}>
+    <table class="table table-bordered">
+      <tr>
+        <th>方案編號</th>
+        <td><input class="form-control" type="text" value="{{ data.商品編號 }}" name="pid" readonly class="id_input"></td>
+      </tr>
+      <tr>
+        <th>方案名稱</th>
+        <td><input class="form-control" type="text" value="{{ data.商品名稱 }}" name="name" required></td>
+      </tr>
+      <tr>
+        <th>單價</th>
+        <td><input class="form-control" type="text" value="{{ data.單價 }}" name="price" required></td>
+      </tr>
+      <tr>
+        <th>類別</th>
+        <td>
+          <select class="form-control" name="category">
+            {% if data.類別 == '基隆' %}
+            <option value="基隆">基隆</option>
+            <option value="宜蘭">宜蘭</option>
+            <option value="臺北">臺北</option>
+            <option value="新北">新北</option>
             <option value="桃園">桃園</option>
+            <option value="新竹">新竹</option>
+            <option value="苗栗">苗栗</option>
+            <option value="台中">台中</option>
+            <option value="南投">南投</option>
+            <option value="雲林">雲林</option>
+            <option value="嘉義">嘉義</option>
+            <option value="臺南">臺南</option>
+            <option value="屏東">屏東</option>
+            <option value="花蓮">花蓮</option>
+            <option value="臺東">臺東</option>
+            <option value="澎湖">澎湖</option>
+            {% elif data.類別 == '宜蘭' %}
+            <option value="基隆">基隆</option>
+            <option value="宜蘭">宜蘭</option>
+            <option value="臺北">臺北</option>
+            <option value="新北">新北</option>
+            <option value="桃園">桃園</option>
+            <option value="新竹">新竹</option>
+            <option value="苗栗">苗栗</option>
+            <option value="台中">台中</option>
+            <option value="南投">南投</option>
+            <option value="雲林">雲林</option>
+            <option value="嘉義">嘉義</option>
+            <option value="臺南">臺南</option>
+            <option value="屏東">屏東</option>
+            <option value="花蓮">花蓮</option>
+            <option value="臺東">臺東</option>
+            <option value="澎湖">澎湖</option>
+            {% elif data.類別 == '臺北' %}
+            <option value="基隆">基隆</option>
+            <option value="宜蘭">宜蘭</option>
+            <option value="臺北">臺北</option>
+            <option value="新北">新北</option>
+            <option value="桃園">桃園</option>
+            <option value="新竹">新竹</option>
+            <option value="苗栗">苗栗</option>
+            <option value="台中">台中</option>
+            <option value="南投">南投</option>
+            <option value="雲林">雲林</option>
+            <option value="嘉義">嘉義</option>
+            <option value="臺南">臺南</option>
+            <option value="屏東">屏東</option>
+            <option value="花蓮">花蓮</option>
+            <option value="臺東">臺東</option>
+            <option value="澎湖">澎湖</option>
+            {% elif data.類別 == '新北' %}
+            <option value="基隆">基隆</option>
+            <option value="宜蘭">宜蘭</option>
+            <option value="臺北">臺北</option>
+            <option value="新北">新北</option>
+            <option value="桃園">桃園</option>
+            <option value="新竹">新竹</option>
+            <option value="苗栗">苗栗</option>
+            <option value="台中">台中</option>
+            <option value="南投">南投</option>
+            <option value="雲林">雲林</option>
+            <option value="嘉義">嘉義</option>
+            <option value="臺南">臺南</option>
+            <option value="屏東">屏東</option>
+            <option value="花蓮">花蓮</option>
+            <option value="臺東">臺東</option>
+            <option value="澎湖">澎湖</option>
+            {% elif data.類別 == '桃園' %}
+            <option value="基隆">基隆</option>
+            <option value="宜蘭">宜蘭</option>
+            <option value="臺北">臺北</option>
+            <option value="新北">新北</option>
+            <option value="桃園">桃園</option>
+            <option value="新竹">新竹</option>
+            <option value="苗栗">苗栗</option>
+            <option value="台中">台中</option>
+            <option value="南投">南投</option>
+            <option value="雲林">雲林</option>
+            <option value="嘉義">嘉義</option>
+            <option value="臺南">臺南</option>
+            <option value="屏東">屏東</option>
+            <option value="花蓮">花蓮</option>
+            <option value="臺東">臺東</option>
             <option value="新竹">新竹</option>
             <option value="苗栗">苗栗</option>
             <option value="台中">台中</option>
@@ -307,13 +411,13 @@
         </select>
       </tr>
       <tr>
-        <th>商品敘述</th>
+        <th>方案敘述</th>
         <td>
           <textarea class="form-control" name="description">{{ data.商品敘述 }}</textarea>
         </td>
       </tr>
       <!-- <tr>
-        <th>商品圖片</th>
+        <th>旅遊圖片</th>
         <td>
           <input type="file" name="file" id="file-uploader" data-target="file-uploader"/>
         </td>
