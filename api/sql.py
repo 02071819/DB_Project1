@@ -57,53 +57,53 @@ class Member():
 
 class Cart():
     def check(user_id):
-        sql = 'SELECT * FROM CART, RECORD WHERE CART.MID = :id AND CART.TNO = RECORD.TNO'
+        sql = 'SELECT * FROM SELECTJOURNEY, RECORD WHERE SELECTJOURNEY.MID = :id AND SELECTJOURNEY.TNO = RECORD.TNO'
         return DB.fetchone(DB.execute_input(DB.prepare(sql), {'id': user_id}))
         
     def get_cart(user_id):
-        sql = 'SELECT * FROM CART WHERE MID = :id'
+        sql = 'SELECT * FROM SELECTJOURNEY WHERE MID = :id'
         return DB.fetchone(DB.execute_input(DB.prepare(sql), {'id': user_id}))
 
     def add_cart(user_id, time):
-        sql = 'INSERT INTO CART VALUES (:id, :time, cart_tno_seq.nextval)'
+        sql = 'INSERT INTO SELECTJOURNEY VALUES (:id, :time, cart_tno_seq.nextval)'
         DB.execute_input( DB.prepare(sql), {'id': user_id, 'time':time})
         DB.commit()
 
     def clear_cart(user_id):
-        sql = 'DELETE FROM CART WHERE MID = :id '
+        sql = 'DELETE FROM SELECTJOURNEY WHERE MID = :id '
         DB.execute_input( DB.prepare(sql), {'id': user_id})
         DB.commit()
        
 class Product():
     def count():
-        sql = 'SELECT COUNT(*) FROM PRODUCT'
+        sql = 'SELECT COUNT(*) FROM JOURNEY'
         return DB.fetchone(DB.execute( DB.connect(), sql))
     
     def get_product(pid):
-        sql ='SELECT * FROM PRODUCT WHERE PID = :id'
+        sql ='SELECT * FROM JOURNEY WHERE PID = :id'
         return DB.fetchone(DB.execute_input(DB.prepare(sql), {'id': pid}))
 
     def get_all_product():
-        sql = 'SELECT * FROM PRODUCT'
+        sql = 'SELECT * FROM JOURNEY'
         return DB.fetchall(DB.execute( DB.connect(), sql))
     
     def get_name(pid):
-        sql = 'SELECT PNAME FROM PRODUCT WHERE PID = :id'
+        sql = 'SELECT PNAME FROM JOURNEY WHERE PID = :id'
         return DB.fetchone(DB.execute_input( DB.prepare(sql), {'id':pid}))[0]
 
     def add_product(input):
-        sql = 'INSERT INTO PRODUCT VALUES (:pid, :name, :price, :category, :description)'
+        sql = 'INSERT INTO JOURNEY VALUES (:pid, :name, :price, :category, :description)'
 
         DB.execute_input(DB.prepare(sql), input)
         DB.commit()
     
     def delete_product(pid):
-        sql = 'DELETE FROM PRODUCT WHERE PID = :id '
+        sql = 'DELETE FROM JOURNEY WHERE PID = :id '
         DB.execute_input(DB.prepare(sql), {'id': pid})
         DB.commit()
 
     def update_product(input):
-        sql = 'UPDATE PRODUCT SET PNAME=:name, PRICE=:price, CATEGORY=:category, PDESC=:description WHERE PID=:pid'
+        sql = 'UPDATE JOURNEY SET PNAME=:name, PRICE=:price, CATEGORY=:category, PDESC=:description WHERE PID=:pid'
         DB.execute_input(DB.prepare(sql), input)
         DB.commit()
     
@@ -117,7 +117,7 @@ class Record():
         return DB.fetchone(DB.execute_input(DB.prepare(sql), {'id': pid, 'tno':tno}))
 
     def get_price(pid):
-        sql = 'SELECT PRICE FROM PRODUCT WHERE PID = :id'
+        sql = 'SELECT PRICE FROM JOURNEY WHERE PID = :id'
         return DB.fetchone(DB.execute_input(DB.prepare(sql), {'id': pid}))[0]
 
     def add_product(input):
@@ -157,7 +157,7 @@ class Order_List():
         return DB.fetchall(DB.execute(DB.connect(), sql))
     
     def get_orderdetail():
-        sql = 'SELECT O.OID, P.PNAME, R.SALEPRICE, R.AMOUNT FROM ORDER_LIST O, RECORD R, PRODUCT P WHERE O.TNO = R.TNO AND R.PID = P.PID'
+        sql = 'SELECT O.OID, J.PNAME, R.SALEPRICE, R.AMOUNT FROM ORDER_LIST O, RECORD R, JOURNEY J WHERE O.TNO = R.TNO AND R.PID = J.PID'
         return DB.fetchall(DB.execute(DB.connect(), sql))
 
 
@@ -171,7 +171,7 @@ class Analysis():
         return DB.fetchall( DB.execute_input( DB.prepare(sql), {"mon": i}))
     
     def category_sale():
-        sql = 'SELECT SUM(TOTAL), CATEGORY FROM(SELECT * FROM PRODUCT,RECORD WHERE PRODUCT.PID = RECORD.PID) GROUP BY CATEGORY'
+        sql = 'SELECT SUM(TOTAL), CATEGORY FROM(SELECT * FROM JOURNEY,RECORD WHERE JOURNEY.PID = RECORD.PID) GROUP BY CATEGORY'
         return DB.fetchall( DB.execute( DB.connect(), sql))
 
     def member_sale():
