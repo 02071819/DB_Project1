@@ -92,7 +92,7 @@ class Product():
         return DB.fetchone(DB.execute_input( DB.prepare(sql), {'id':pid}))[0]
 
     def add_product(input):
-        sql = 'INSERT INTO JOURNEY VALUES (:pid, :name, :price, :category, :description)'
+        sql = 'INSERT INTO JOURNEY VALUES (:pid, :name, :price, :category, :description, :image, :image2)'
 
         DB.execute_input(DB.prepare(sql), input)
         DB.commit()
