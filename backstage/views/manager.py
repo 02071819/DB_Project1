@@ -54,7 +54,9 @@ def book():
             '商品編號': i[0],
             '商品名稱': i[1],
             '商品售價': i[2],
-            '商品類別': i[3]
+            '商品類別': i[3],
+            # '商品圖片1': i[5],
+            # '商品圖片2': i[6],
         }
         book_data.append(book)
     return book_data
@@ -73,6 +75,8 @@ def add():
         price = request.values.get('price')
         category = request.values.get('category')
         description = request.values.get('description')
+        image = request.values.get('image')
+        image2 = request.values.get('image2')
 
         if (len(name) < 1 or len(price) < 1):
             return redirect(url_for('manager.productManager'))
@@ -82,7 +86,9 @@ def add():
              'name' : name,
              'price' : price,
              'category' : category,
-             'description':description
+             'description':description,
+             'image':image,
+             'image2':image2
             }
         )
 
